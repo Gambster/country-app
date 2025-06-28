@@ -1,0 +1,12 @@
+<section class="flex gap-3">
+  @for (region of regions; track region) {
+    <button
+      [class]="'btn btn-soft btn-' + regionsColors()[region]"
+      [class.btn-active]="selectedRegion() === region"
+      [value]="region"
+      (click)="setSelectedRegion(region)"
+    >
+      {{ region }}
+    </button>
+  }
+</section>

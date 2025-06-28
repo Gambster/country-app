@@ -1,1 +1,9 @@
-<country-list [countries]="[]" />
+<h1 class="text-2l">Por región</h1>
+<h3 class="text-lg">Seleccione una región</h3>
+
+<country-region-buttons-list (region)="region.set($event)" />
+<country-list
+  [countries]="countryResource.hasValue() ? countryResource.value() : []"
+  [errorMessage]="countryResource.error()"
+  [isLoading]="countryResource.isLoading()"
+/>
