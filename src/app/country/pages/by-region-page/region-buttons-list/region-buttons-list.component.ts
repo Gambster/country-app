@@ -1,17 +1,19 @@
-import { Component, computed, effect, output, signal } from '@angular/core';
+import { Component, computed, effect, input, linkedSignal, output, signal } from '@angular/core';
 import { Region, RegionColor } from '../../../interfaces/region.interface';
 import { REGION_COLOR } from '../../../constants/regions-colors.constants';
-import { NgClass } from '@angular/common';
 
 @Component({
   selector: 'country-region-buttons-list',
-  imports: [NgClass],
+  imports: [],
   templateUrl: './region-buttons-list.component.html'
 })
 export class RegionButtonsListComponent {
   public regions: Region[] = ['Africa', 'Americas', 'Asia', 'Europe', 'Oceania', 'Antarctic'];
   public regionsColors = computed<RegionColor>(() => REGION_COLOR);
-  public selectedRegion = signal<Region | null>(null);
+
+  initialValue = input<Region | null>(null);
+
+  public selectedRegion = linkedSignal<Region | null>(() => this.initialValue());
   public region = output<Region>();
 
   changeEffect = effect(() => {
